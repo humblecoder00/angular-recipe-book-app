@@ -1,10 +1,11 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { Ingredient } from "../shared/ingredient.model";
 
 @Injectable({ providedIn: 'root' })
 
 export class ShoppingListService {
-    ingredientsChanged = new EventEmitter<Ingredient[]>()
+    ingredientsChanged = new Subject<Ingredient[]>()
 
     private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
@@ -33,7 +34,7 @@ export class ShoppingListService {
             this.ingredients.push(ingredient)
         }
 
-        this.ingredientsChanged.emit(this.ingredients.slice())
+        this.ingredientsChanged.next(this.ingredients.slice())
     }
 
     // add several ingredients at once
@@ -43,7 +44,7 @@ export class ShoppingListService {
         // check if it exists first
         const updatedIngredients = this._handleMultiIngredientUpdate(ingredientsList)
         this.ingredients = updatedIngredients
-        this.ingredientsChanged.emit(this.ingredients.slice())
+        this.ingredientsChanged.next(this.ingredients.slice())
     }
 
     // helper for multi ingredient update with duplicate prevention - custom
