@@ -10,7 +10,10 @@ const { API_URL} = environment
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
-    constructor(private http: HttpClient, private recipeService: RecipeService) {}
+    constructor(
+        private http: HttpClient,
+        private recipeService: RecipeService,
+    ) {}
 
     storeRecipes() {
         const recipes = this.recipeService.getRecipes()
@@ -24,12 +27,13 @@ export class DataStorageService {
         return this.http
             .get<Recipe[]>(`${API_URL}/recipes.json`)
             .pipe(
+                // now since we are in a pipe method, we just add the second Observable methods after the exhaustMap
                 map(recipes => {
                     return recipes.map(recipe => {
                         return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []}
                     })
                 }),
-                tap(recipes => {
+                tap(recipes => {  
                     this.recipeService.setRecipes(recipes)
                 })
             )
