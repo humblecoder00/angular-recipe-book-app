@@ -1,15 +1,15 @@
-const { writeFile } = require('fs')
-const { argv } = require('yargs')
+const { writeFile } = require('fs');
+const { argv } = require('yargs');
 // read environment variables from .env file
 require('dotenv').config()
 
 // read the command line arguments passed with yargs
-const environment = argv.environment
-const isProduction = environment === 'prod'
+const environment = argv.environment;
+const isProduction = environment === 'prod';
 
 if (!process.env.API_KEY || !process.env.API_URL) {
-    console.error('All the required environment variables were not provided!')
-    process.exit(-1)
+    console.error('All the required environment variables were not provided!');
+    process.exit(-1);
 }
 
 // const targetPath = isProduction
