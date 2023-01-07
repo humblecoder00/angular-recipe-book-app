@@ -12,11 +12,7 @@ if (!process.env.API_KEY || !process.env.API_URL) {
     process.exit(-1);
 }
 
-// const targetPath = isProduction
-//    ? `./src/environments/environment.prod.ts`
-//    : `./src/environments/environment.ts`
-
-// Just use single env file for now:
+// Just use single env file locally, prevent sending secrets to the repo:
 const targetPath = './src/environments/environment.ts'
 
 // we have access to our environment variables
