@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "config": "ts-node ./src/environments/set-env.ts",
-    "start": "npm run config -- --environment=dev && ng serve",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -26,6 +26,8 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "8.4.1",
+    "@angular-builders/dev-server": "^7.3.1",
     "@angular-devkit/build-angular": "~0.803.29",
     "@angular/cli": "~8.3.29",
     "@angular/compiler-cli": "~8.2.14",
@@ -45,7 +47,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3",
-    "yargs": "^17.6.2"
+    "typescript": "~3.5.3"
   }
 }
